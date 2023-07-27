@@ -1,9 +1,16 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        Hi
-    </head>
-    <body>
-        Week 1
-    </body>
+<html ng-app="LunchCheck">
+<head>
+    
+</head>
+<body>
+
+    <div ng-controller="LunchCheckController">
+    <input type="text" ng-model="lunchItems">
+    <button ng-click="checkLunch()">Check If Too Much</button>
+    <div>{{message}}</div>
+</div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</body>
 </html>
