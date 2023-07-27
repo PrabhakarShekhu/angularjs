@@ -1,4 +1,5 @@
-(function () {
+(function ()
+{
   'use strict';
 
   angular.module('LunchCheck', [])
@@ -6,31 +7,38 @@
 
   LunchCheckController.$inject = ['$scope'];
 
-  function LunchCheckController($scope) {
+  function LunchCheckController($scope)
+  {
     var lunchCtrl = this;
     lunchCtrl.lunchItems = "";
     lunchCtrl.message = "";
 
-    lunchCtrl.checkIfTooMuch = function () {
-      if (lunchCtrl.lunchItems.trim() === "") {
+    lunchCtrl.checkIfTooMuch = function ()
+    {
+      if (lunchCtrl.lunchItems.trim() === "")
+      {
         lunchCtrl.message = "Please enter data first";
-      } else {
+      } else 
+      {
         var items = lunchCtrl.lunchItems.split(',');
         var itemCount = items.length;
 
-        // If there are empty items (,,), filter them out
-        items = items.filter(function (item) {
+        items = items.filter(function (item)
+        {
           return item.trim() !== "";
         });
 
         itemCount = items.length;
 
-        if (itemCount <= 3) {
+        if (itemCount <= 3)
+        {
           lunchCtrl.message = "Enjoy!";
-        } else {
+        } else
+        {
           lunchCtrl.message = "Too much!";
         }
       }
     };
   }
-})();
+})
+();
