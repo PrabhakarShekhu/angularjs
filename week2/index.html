@@ -1,1 +1,18 @@
-
+<!DOCTYPE html>
+<html ng-app="LunchCheck">
+<head>
+  <title>LunchCheck</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js"></script>
+  <script src="app.js"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div ng-controller="LunchCheckController as lunchCtrl">
+    <h1>LunchCheck</h1>
+    <p>Enter comma-separated items as e.g., item1, item2, item3:</p>
+    <input type="text" ng-model="lunchCtrl.lunchItems" placeholder="e.g., item1, item2, item3">
+    <button ng-click="lunchCtrl.checkIfTooMuch()">Check If Too Much</button>
+    <p id="message">{{ lunchCtrl.message }}</p>
+  </div>
+</body>
+</html>
