@@ -1,44 +1,50 @@
-(function ()
-{
+(function () {
   'use strict';
 
-  angular.module('LunchCheck', [])
-    .controller('LunchCheckController', LunchCheckController);
+  angular.module('ShoppingListCheckOff', [])
+    .controller('ToBuyController', ToBuyController)
+    .controller('AlreadyBoughtController', AlreadyBoughtController)
+    .service('ShoppingListCheckOffService', ShoppingListCheckOffService);
 
-  LunchCheckController.$inject = ['$scope'];
+  ToBuyController.$inject = ['ShoppingListCheckOffService'];
+  function ToBuyController(ShoppingListCheckOffService) {
+    var toBuy = this;
+    toBuy.items = ShoppingListCheckOffService.getToBuyItems();
 
-  function LunchCheckController($scope)
-  {
-    var lunchCtrl = this;
-    lunchCtrl.lunchItems = "";
-    lunchCtrl.message = "";
-
-    lunchCtrl.checkIfTooMuch = function ()
-    {
-      if (lunchCtrl.lunchItems.trim() === "")
-      {
-        lunchCtrl.message = "Please enter data first";
-      } else 
-      {
-        var items = lunchCtrl.lunchItems.split(',');
-        var itemCount = items.length;
-
-        items = items.filter(function (item)
-        {
-          return item.trim() !== "";
-        });
-
-        itemCount = items.length;
-
-        if (itemCount <= 3)
-        {
-          lunchCtrl.message = "Enjoy!";
-        } else
-        {
-          lunchCtrl.message = "Too much!";
-        }
-      }
+    toBuy.markAsBought = function (index) {
+      ShoppingListCheckOffService.markAsBought(index);
     };
   }
-})
-();
+
+  AlreadyBoughtController.$inject = ['ShoppingListCheckOffService'];
+  function AlreadyBoughtController(ShoppingListCheckOffService) {
+    var alreadyBought = this;
+    alreadyBought.items = ShoppingListCheckOffService.getAlreadyBoughtItems();
+  }
+
+  function ShoppingListCheckOffService() {
+    var service = this;
+    var toBuyItems = [
+      { name: 'cookies', quantity: 10 },
+      { name: 'apples', quantity: 5 },
+      { name: 'milk', quantity: 2 },
+      { name: 'chips', quantity: 3 },
+      { name: 'eggs', quantity: 12 }
+    ];
+    var alreadyBoughtItems = [];
+
+    service.getToBuyItems = function () {
+      return toBuyItems;
+    };
+
+    service.getAlreadyBoughtItems = function () {
+      return alreadyBoughtItems;
+    };
+
+    service.markAsBought = function (index) {
+      var boughtItem = toBuyItems.splice(index, 1)[0];
+      alreadyBoughtItems.push(boughtItem);
+    };
+  }
+
+})();
