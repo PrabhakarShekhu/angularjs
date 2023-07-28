@@ -1,1 +1,40 @@
+body
+{
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
 
+.container 
+{
+  display: flex;
+  justify-content: space-evenly;
+}
+
+h2 
+{
+  margin-bottom: 10px;
+}
+
+ul 
+{
+  list-style: none;
+  padding: 0;
+}
+
+li 
+{
+  margin-bottom: 5px;
+}
+
+button 
+{
+  background-color: #ff0000;
+  color: white;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 8px 15px;
+  cursor: pointer;
+  border-radius: 12px;
+  margin: 4px 2px;
+}
